@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,15 +17,22 @@ class _FirstAppState extends State<FirstApp> {
   int _var = 0;
   String text = "";
   TextEditingController controller = TextEditingController();
+  String? _selected = "A";
+  bool? checked = false;
+
+  void buttonOnPressed(){
+  print("Button pressed");
+  }
+
+  void _setSelected(String? value) {
+    print(value);
+    setState(() {
+      _selected = value;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    controller.text = "Test";
-    String _selected = "A";
-    void _setSelected(String? value){
-      print(value);
-      setState(() {_selected = value!!;});
-    }
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: "First App",
@@ -44,20 +53,34 @@ class _FirstAppState extends State<FirstApp> {
             ),
           ),
           body: Column(children: [
-            ListTile(
+
+            RadioListTile(
                 title: Text("A"),
-                leading: Radio(
-                  value: "A",
-                  groupValue:_selected, onChanged:_setSelected
-                )
-               ),
-            ListTile(
-              title: Text("B"),
-                leading: Radio(
-                    value: "B",
-                    groupValue:_selected, onChanged:_setSelected
-                )
+                value: "A",
+                groupValue: _selected,
+                onChanged:_setSelected),
+            RadioListTile(
+                title: Text("B"),
+                value: "B",
+                groupValue: _selected,
+                onChanged:_setSelected),
+            CheckboxListTile(
+                title: Text("Admis"),
+                value: checked,
+                onChanged: (chk) {
+                  setState(() {
+                    checked = chk;
+                    print(checked);
+                  });
+                }),
+            TextField(
+              controller: controller,
             ),
+            MaterialButton(
+                color: Colors.blue,
+                onPressed: buttonOnPressed,
+                child: const Text("Calculer")
+            )
           ]),
         ));
   }
