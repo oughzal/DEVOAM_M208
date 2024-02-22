@@ -13,16 +13,23 @@ class FirstApp extends StatefulWidget {
 
 class _FirstAppState extends State<FirstApp> {
   int _var = 0;
-  String text="";
+  String text = "";
   TextEditingController controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     controller.text = "Test";
+    String _selected = "A";
+    void _setSelected(String? value){
+      print(value);
+      setState(() {_selected = value!!;});
+    }
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: "First App",
+        color: Colors.black,
         home: Scaffold(
-          backgroundColor: Colors.green,
+
           appBar: AppBar(
             elevation: 4,
             leading: const Icon(
@@ -36,27 +43,22 @@ class _FirstAppState extends State<FirstApp> {
               style: TextStyle(fontSize: 20, color: Colors.blue),
             ),
           ),
-          body: Column(
-              children:[
-                TextField(controller: controller ,)
-                ,Text("${controller.text}",
-                style:TextStyle(
-                  color: Color.fromARGB(0xff, 0xff, 0, 0),
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold
-
-                ) ,
-              ),
-                IconButton(onPressed: (){
-                  setState(() {  });
-
-                  print(_var++);
-
-
-                }, icon: Icon(Icons.run_circle))
-    ]
-
-          ),
+          body: Column(children: [
+            ListTile(
+                title: Text("A"),
+                leading: Radio(
+                  value: "A",
+                  groupValue:_selected, onChanged:_setSelected
+                )
+               ),
+            ListTile(
+              title: Text("B"),
+                leading: Radio(
+                    value: "B",
+                    groupValue:_selected, onChanged:_setSelected
+                )
+            ),
+          ]),
         ));
   }
 }
