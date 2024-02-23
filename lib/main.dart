@@ -1,35 +1,14 @@
 import 'dart:ffi';
 
+import 'package:devm208/FormWidgets.dart';
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(const FirstApp());
 }
 
-class FirstApp extends StatefulWidget {
+class FirstApp extends StatelessWidget {
   const FirstApp({super.key});
-
-  @override
-  State<FirstApp> createState() => _FirstAppState();
-}
-
-class _FirstAppState extends State<FirstApp> {
-  int _var = 0;
-  String text = "";
-  TextEditingController controller = TextEditingController();
-  String? _selected = "A";
-  bool? checked = false;
-
-  void buttonOnPressed(){
-  print("Button pressed");
-  }
-
-  void _setSelected(String? value) {
-    print(value);
-    setState(() {
-      _selected = value;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +17,6 @@ class _FirstAppState extends State<FirstApp> {
         title: "First App",
         color: Colors.black,
         home: Scaffold(
-
           appBar: AppBar(
             elevation: 4,
             leading: const Icon(
@@ -47,41 +25,12 @@ class _FirstAppState extends State<FirstApp> {
             ),
             backgroundColor: Colors.black,
             title: Text(
-              "$_var",
+              "My App",
               textAlign: TextAlign.end,
               style: TextStyle(fontSize: 20, color: Colors.blue),
             ),
           ),
-          body: Column(children: [
-
-            RadioListTile(
-                title: Text("A"),
-                value: "A",
-                groupValue: _selected,
-                onChanged:_setSelected),
-            RadioListTile(
-                title: Text("B"),
-                value: "B",
-                groupValue: _selected,
-                onChanged:_setSelected),
-            CheckboxListTile(
-                title: Text("Admis"),
-                value: checked,
-                onChanged: (chk) {
-                  setState(() {
-                    checked = chk;
-                    print(checked);
-                  });
-                }),
-            TextField(
-              controller: controller,
-            ),
-            MaterialButton(
-                color: Colors.blue,
-                onPressed: buttonOnPressed,
-                child: const Text("Calculer")
-            )
-          ]),
+          body: FormWidgets(),
         ));
   }
 }
