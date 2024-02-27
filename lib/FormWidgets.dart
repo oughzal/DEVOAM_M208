@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+
 class FormWidgets extends StatefulWidget {
   const FormWidgets({super.key});
 
@@ -11,19 +12,29 @@ class _FormWidgetsState extends State<FormWidgets> {
   String text = "";
   TextEditingController controller = TextEditingController();
   String? _selected = "A";
-  bool? checked = false;
+  bool checked = false;
 
-  void buttonOnPressed(){
+  String _selectedValue = 'Option 1';
+  final List<String> _options = ['Option 1', 'Option 2', 'Option 3'];
+
+  void buttonOnPressed() {
     print("Button pressed");
     String text = controller.text!;
-    String admin = (checked!)? "Admis" : "non Admis";
+    String admin = (checked!) ? "Admis" : "non Admis";
     String option = _selected!;
     print("text : $text\nadmin : $admin\noption:$option");
   }
+
   void _setSelected(String? value) {
     print(value);
     setState(() {
       _selected = value;
+    });
+  }
+
+  void _dropdawOnChanged(String? value) {
+    setState(() {
+      _selectedValue = value!;
     });
   }
 
@@ -34,13 +45,36 @@ class _FormWidgetsState extends State<FormWidgets> {
           title: Text("A"),
           value: "A",
           groupValue: _selected,
-          onChanged:_setSelected),
+          onChanged: _setSelected),
       RadioListTile(
           title: Text("B"),
           value: "B",
           groupValue: _selected,
-          onChanged:_setSelected),
+          onChanged: _setSelected),
       CheckboxListTile(
+          title: Text("Admis"),
+          value: checked,
+          onChanged: (chk) {
+            setState(() {
+              checked = chk!;
+              print(checked);
+            });
+          }),
+      TextField(
+        controller: controller,
+      ),
+      DropdownButton<String>(
+
+        value: _selectedValue,
+        items: _options.map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(value),
+          );
+        }).toList(),
+        onChanged: _dropdawOnChanged,
+      ),
+      SwitchListTile(
           title: Text("Admis"),
           value: checked,
           onChanged: (chk) {
@@ -49,15 +83,11 @@ class _FormWidgetsState extends State<FormWidgets> {
               print(checked);
             });
           }),
-      TextField(
-        controller: controller,
-      ),
       MaterialButton(
           color: Colors.blue,
           textColor: Colors.white,
           onPressed: buttonOnPressed,
-          child: const Text("Calculer")
-      )
+          child: const Text("Calculer"))
     ]);
   }
 }
