@@ -13,6 +13,7 @@ class _FormWidgetsState extends State<FormWidgets> {
   TextEditingController controller = TextEditingController();
   String? _selected = "A";
   bool checked = false;
+  TextEditingController controller2 = TextEditingController();
 
   String _selectedValue = 'Option 1';
   final List<String> _options = ['Option 1', 'Option 2', 'Option 3'];
@@ -23,6 +24,10 @@ class _FormWidgetsState extends State<FormWidgets> {
     String admin = (checked!) ? "Admis" : "non Admis";
     String option = _selected!;
     print("text : $text\nadmin : $admin\noption:$option");
+    String value = controller2.text;
+    setState(() {
+
+    });
   }
 
   void _setSelected(String? value) {
@@ -41,6 +46,9 @@ class _FormWidgetsState extends State<FormWidgets> {
   @override
   Widget build(BuildContext context) {
     return Column(children: [
+      TextField(
+       controller: controller2,
+      ),
       RadioListTile(
           title: Text("A"),
           value: "A",
@@ -87,7 +95,8 @@ class _FormWidgetsState extends State<FormWidgets> {
           color: Colors.blue,
           textColor: Colors.white,
           onPressed: buttonOnPressed,
-          child: const Text("Calculer"))
+          child: const Text("Calculer")),
+      Text("${controller2.text}")
     ]);
   }
 }
