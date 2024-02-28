@@ -25,8 +25,15 @@ class _EFFState extends State<EFF> {
       title: "EFF 2023",
       home: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.blue,
           leading: Icon(Icons.cloud_circle),
           title: Text("Paiment club"),
+          actions: [
+            Icon(Icons.menu)
+          ],
+        ),
+        drawer: Drawer(
+          child: Text("Drawer"),
         ),
         body: Padding(
           padding: EdgeInsets.all(8.0),
