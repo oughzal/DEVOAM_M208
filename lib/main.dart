@@ -14,12 +14,26 @@ class FirstApp extends StatefulWidget {
 class _FirstAppState extends State<FirstApp> {
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "Title",
       home: Scaffold(
         appBar: AppBar(
-          title: Text("First App"),
+          title: Text(
+            "First App",
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          backgroundColor: Colors.blue,
         ),
+        body: ListView.builder(
+            itemCount: 200,
+            scrollDirection: Axis.vertical,
+            itemBuilder: (context, index) {
+              return Text("Item $index");
+            }),
       ),
     );
   }
