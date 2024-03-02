@@ -19,6 +19,11 @@ class _FirstAppState extends State<FirstApp> {
       title: "Title",
       home: Scaffold(
         appBar: AppBar(
+          leading: Icon(
+            Icons.android,
+            color: Colors.white,
+            opticalSize: 3.5,
+          ),
           title: Text(
             "First App",
             style: TextStyle(
