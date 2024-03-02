@@ -17,27 +17,29 @@ class _EFFState extends State<EFF> {
   String? _categorie = "Enfant";
   bool _checked = false;
   double _total=0.0;
-  TextEditingController _controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController(text: "0");
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "EFF 2023",
       home: Scaffold(
         appBar: AppBar(
+
           backgroundColor: Colors.blue,
-          leading: Icon(Icons.cloud_circle),
-          title: Text("Paiment club"),
+          leading: const Icon(Icons.cloud_circle, color: Colors.white,),
+          title: const Text("Paiment club",style: TextStyle(color: Colors.white),),
           actions: [
-            Icon(Icons.menu)
+            Icon(Icons.more_vert,color: Colors.white,)
           ],
         ),
-        drawer: Drawer(
+        drawer: const Drawer(
 
-          child: Text("Drawer"),
+          child: const Text("Drawer"),
         ),
         body: Padding(
-          padding: EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
               Row(
@@ -47,6 +49,7 @@ class _EFFState extends State<EFF> {
                       child: TextField(
                         controller: _controller,
                       keyboardType: TextInputType.number,
+                        textAlign: TextAlign.center,
 
                   )),
                 ],
