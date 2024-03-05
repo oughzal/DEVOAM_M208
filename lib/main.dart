@@ -14,101 +14,56 @@ class EFF extends StatefulWidget {
 }
 
 class _EFFState extends State<EFF> {
-  String? _categorie = "Enfant";
-  bool _checked = false;
-  double _total=0.0;
-  final TextEditingController _controller = TextEditingController(text: "0");
+  String? _Option = "";
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "EFF 2023",
+      title: "Menu Flutter",
       home: Scaffold(
         appBar: AppBar(
-
           backgroundColor: Colors.blue,
-          leading: const Icon(Icons.cloud_circle, color: Colors.white,),
-          title: const Text("Paiment club",style: TextStyle(color: Colors.white),),
-          actions: [
-            Icon(Icons.more_vert,color: Colors.white,)
+          leading: const Icon(
+            Icons.cloud_circle,
+            color: Colors.white,
+          ),
+          title: const Text(
+            "Menu Flutter",
+            style: TextStyle(color: Colors.white),
+          ),
+          actions: <Widget>[
+            PopupMenuButton(
+              offset: const Offset(0,50),
+              onSelected: (String value){
+                setState(() {
+                  _Option = value!;
+                });
+              },
+                icon: const Icon(Icons.more_vert, color: Colors.white,),
+                itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+                  const PopupMenuItem<String>(
+                   value: "Option 1",
+                   child: Text("Option 1"),
+                  ),   const PopupMenuItem<String>(
+                   value: "Option 2",
+                   child: Text("Option 2"),
+                  ),   const PopupMenuItem<String>(
+                   value: "Option 3",
+                   child: Text("Option 3"),
+                  ),   const PopupMenuItem<String>(
+                   value: "Option 4",
+                   child: Text("Option 4"),
+                  ),
+
+                ]
+            )
           ],
         ),
-        drawer: const Drawer(
-
-          child: const Text("Drawer"),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Text("Nombre de séance par semaine : "),
-                  Flexible(
-                      child: TextField(
-                        controller: _controller,
-                      keyboardType: TextInputType.number,
-                        textAlign: TextAlign.center,
-
-                  )),
-                ],
-              ),
-              Row(
-                children: [
-                  Text("Catégorie : "),
-                  Flexible(
-                    child: RadioListTile(
-                        contentPadding: EdgeInsets.all(0),
-                        title: Text("Enfant"),
-                        value: "Enfant",
-                        groupValue: _categorie,
-                        onChanged: (value) {
-                          setState(() {
-                            _categorie = value!;
-                          });
-                        }),
-                  ),
-                  Flexible(
-                    child: RadioListTile(
-                        contentPadding: EdgeInsets.all(0),
-                        title: Text("Adult"),
-                        value: "Adulte",
-                        groupValue: _categorie,
-                        onChanged: (value) {
-                          setState(() {
-                            _categorie = value!;
-                          });
-                        }),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Text("Premium"),
-                  Checkbox(
-                      value: _checked,
-                      onChanged: (value) {
-                        setState(() {
-                          _checked = value!;
-                        });
-                      }),
-                ],
-              ),
-              ElevatedButton(
-                  onPressed: () {
-                    int nbHours = int.tryParse(_controller.text.toString()) ?? 0;
-                    double prix = (_categorie! == "Enfant")? 15.0 : 30.0;
-                    double prixTotal = 4*nbHours*prix;
-                    if(_checked==true) prixTotal +=200;
-                    setState(() {
-                      _total = prixTotal;
-                    });
-                  },
-                  child: Text("Calculer")
-              ),
-              Text("Le montant mensuel à payer : $_total")
-            ],
+        body: Center(
+          child:Text(
+            "$_Option",
+            style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
           ),
         ),
       ),
