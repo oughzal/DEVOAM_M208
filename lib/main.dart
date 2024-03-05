@@ -22,12 +22,15 @@ class _FirstAppState extends State<FirstApp> {
         body: null,
         drawer: Drawer(
           child: ListView(
-            children:const <Widget> [
+            children: <Widget> [
               DrawerHeader(decoration: BoxDecoration(
                 color:Colors.blue
               ), child: Center(child: Text("DEVOAM201",
                 style: TextStyle(color: Colors.white,fontSize: 30),
               ),),
+              ),
+              Image.network("https://cdn-images-1.medium.com/max/174/1*XrbUBnZb-Vp9jRDGqU-BXQ@2x.png",
+              height: 30,
               ),
               ListTile(
                 leading: const Icon(Icons.settings),
@@ -40,12 +43,16 @@ class _FirstAppState extends State<FirstApp> {
                 subtitle: Text("accèder à votre application"),
               ),
               ListTile(
-                leading: const Icon(Icons.settings),
+                leading: Image.asset("assets/bird.png",
+                  height: 30,
+                ),
                 title:Text("Paramètres"),
                 subtitle: Text("paramètres de votre application"),
               ),
               ListTile(
-                leading: const Icon(Icons.settings),
+                leading: Image.asset("assets/bird.png",
+                  height: 30,
+                ),
                 title:Text("Paramètres"),
                 subtitle: Text("paramètres de votre application"),
               ),
