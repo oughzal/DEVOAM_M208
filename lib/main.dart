@@ -23,13 +23,16 @@ class _FirstAppState extends State<FirstApp> {
 
     });
   }
-  int _currentIndex = 0;
+
+  int _currentIndex =0;
   List<String> items = ["Home", "Edite", "Setting"];
   String _selected = "Home";
+
   void _OnTabBottomItem(int index) {
     String item = items[index];
 
     setState(() {
+      _currentIndex=index;
         _selected=item;
     });
   }
@@ -44,12 +47,15 @@ class _FirstAppState extends State<FirstApp> {
           title: Text("Bottom Navigation"),
         ),
         body: Column(
-          children: [Text("Selected item : $_selected",
+          children: [
+            Text("Selected item : $_selected",
+
             style: TextStyle(fontSize: 30,
               fontWeight: FontWeight.bold
             ),
           ),
-            ElevatedButton(onPressed: _onButtonPress, child: Text("Edite"))
+            ElevatedButton(onPressed: _onButtonPress, child: Text("Edite"),
+            )
         ]
         ),
         bottomNavigationBar: BottomNavigationBar(
@@ -62,8 +68,14 @@ class _FirstAppState extends State<FirstApp> {
                 icon: Icon(Icons.settings), label: "Settings"),
           ],
           currentIndex: _currentIndex,
-          onTap: _OnTabBottomItem,
+          onTap: (int index){
+            setState(() {
+              _currentIndex=index;
+              _selected = items[index];
+            });
+          },
           selectedItemColor: Colors.red,
+          elevation: 20,
         ),
       ),
     );
