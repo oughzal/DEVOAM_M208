@@ -18,7 +18,7 @@ class _FirstAppState extends State<FirstApp> {
       title: "Title",
       home: Scaffold(
         appBar: AppBar(
-          title: Text("First App"),
+          title: Text("My App"),
         ),
       ),
     );
