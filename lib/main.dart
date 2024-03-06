@@ -1,3 +1,4 @@
+import 'package:devm208/MyDrawer.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -38,6 +39,7 @@ class _FirstAppState extends State<FirstApp> {
     return MaterialApp(
       title: "My App",
       home: Scaffold(
+        drawer: MyDrawer(),
         appBar: AppBar(
           title: Text("Bottom Navigation"),
         ),
