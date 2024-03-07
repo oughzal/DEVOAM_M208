@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,9 +12,51 @@ class FirstApp extends StatefulWidget {
 }
 
 class _FirstAppState extends State<FirstApp> {
-  TextEditingController _taille = TextEditingController(); // findById()
-  TextEditingController _poids = TextEditingController();
-  TextEditingController _temps = TextEditingController();
+  final TextEditingController _taille = TextEditingController(); // findById()
+  final TextEditingController _poids = TextEditingController();
+  final TextEditingController _temps = TextEditingController();
+  String stat ="";
+  String _horloge = "00:00:00";
+
+
+  /**
+   * Méthode pour le bouton calculer IMC
+   */
+  void _onPressIMC(){
+    double t = double.tryParse(_taille.text.toString()) ?? 0;
+    double p = double.tryParse(_poids.text.toString()) ?? 0;
+    t= t / 100;
+    final double imc = p/(t*t);
+
+    if(imc <18.5){
+      stat="Sous-poids";
+    }
+    else if(imc <25){
+      stat="Normal";
+    }
+    else{
+      stat="Sur-poids";
+
+    }
+    setState(() {
+      stat = "${imc.toStringAsFixed(2)} ($stat)";
+    });
+  }
+
+  /**
+   * Méthode pour le bouton Convertir hh:mm:ss
+   */
+  void _onPressConvert(){
+    int t = int.tryParse(_temps.text) ?? 0;
+    int h = t ~/ 3600;
+    t = t % 3600;
+    int m = t ~/60;
+    int s = t % 60;
+    setState(() {
+      _horloge ="${h.toString().padLeft(2,"0")}:${m.toString().padLeft(2,"0")}:${s.toString().padLeft(2,"0")}";
+    });
+
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -59,14 +99,12 @@ class _FirstAppState extends State<FirstApp> {
               height: 20,
             ),
             ElevatedButton(
-                onPressed: () {
-                  int t = _taille.text.toString() as int;
-                },
+                onPressed: _onPressIMC, // appler la méthode sans ()
                 child: Text("Calculer IMC")),
             const SizedBox(
               height: 20,
             ),
-            Text("21 (normal)",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
+            Text("$stat",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
             Text(
               "Temps en secondes :",
               textAlign: TextAlign.start,
@@ -83,12 +121,12 @@ class _FirstAppState extends State<FirstApp> {
               height: 20,
             ),
             ElevatedButton(
-                onPressed: (){},
+                onPressed: _onPressConvert,
                 child: Text("Convertir en HH:MM:SS")),
             const SizedBox(
               height: 20,
             ),
-            Text("00:00:00",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
+            Text("$_horloge",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
           ],
         ),
       ),
