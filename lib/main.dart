@@ -15,10 +15,13 @@ class _FirstAppState extends State<FirstApp> {
   @override
   Widget build(BuildContext context) {
     return  MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "Title",
       home: Scaffold(
         appBar: AppBar(
-          title: Text("My App"),
+          backgroundColor: Colors.blue,
+          leading: const Icon(Icons.home , color: Colors.white,),
+          title: Text("My App", style: TextStyle(color: Colors.white),),
         ),
       ),
     );
