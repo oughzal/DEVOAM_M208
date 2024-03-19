@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'User.dart';
 
@@ -72,14 +73,16 @@ class _FirstAppState extends State<FirstApp> {
             ),
 
 
-            Expanded(
+            Flexible(
+
               child: ListView.builder(
                 itemCount: users.length,
                   itemBuilder: (context,position){
                     User user = users[position];
                     return Row(
                       children: [
-                        Text("${user.nom} ${user.prenom}"),
+                        Expanded(child: Text("${user.nom}")),
+                        Expanded(child: Text("${user.prenom}")),
                         ElevatedButton(onPressed: (){
                           _position = position;
                               setState(() {
