@@ -91,13 +91,16 @@ class _FirstAppState extends State<FirstApp> {
 
                           });
 
-                        }, child: Icon(Icons.edit)),
+                        }, child: Icon(Icons.edit)
+                        ),
+                        SizedBox(width: 3,),
                         ElevatedButton(onPressed: (){
                           setState(() {
                             users.removeAt(position);
                           });
                         }, child: Icon(Icons.delete)),
                       ],
+
                     );
                   }
               ),
