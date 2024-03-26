@@ -25,6 +25,7 @@ class _UserScreenState extends State<UserScreen> {
 
   Future<void> _refreshUsers() async {
     List<User> users = await _databaseHelper.getUsers();
+    print(users);
     setState(() {
       _users = users;
     });

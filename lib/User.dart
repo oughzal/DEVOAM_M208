@@ -2,7 +2,7 @@ class User{
   final int? id;
   late final String firstName;
   late final String lastName;
-  User({this.id=0,required this.firstName,required this.lastName});
+  User({this.id=null,required this.firstName,required this.lastName});
 
   factory User.fromMap(Map<String, dynamic> data) {
     return User(
