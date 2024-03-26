@@ -37,7 +37,7 @@ class DatabaseHelper {
     return await db.insert('users', user.toMap());
   }
 
-  Future<User?> getUser(int id)async{
+  Future<User?> getUser(int id) async{
     final db = await instance.database;
     final List<Map<String, dynamic>> maps = await db.query("users", where: 'id=?',whereArgs: [id]);
     if (maps.isNotEmpty) {

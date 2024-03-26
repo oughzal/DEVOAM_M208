@@ -135,7 +135,7 @@ class _UserScreenState extends State<UserScreen> {
                       IconButton(
                         icon: Icon(Icons.delete),
                         onPressed: () {
-                          _deleteUser(user.id);
+                          _deleteUser(user.id ?? 0); // kt : id ?: 0
                         },
                       ),
                     ],
