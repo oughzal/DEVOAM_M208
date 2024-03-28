@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'Screen2.dart';
+
 void main() {
   runApp(const FirstApp());
 }
@@ -21,7 +23,14 @@ class _FirstAppState extends State<FirstApp> {
         appBar: AppBar(
           backgroundColor: Colors.blue,
           leading: const Icon(Icons.home , color: Colors.white,),
-          title: Text("My App", style: TextStyle(color: Colors.white),),
+          title: Text("Screen1", style: TextStyle(color: Colors.white),),
+        ),
+        body: Center(
+          child: ElevatedButton(
+            onPressed: () { 
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=> Screen2()));
+            },
+          child: Text("Ecran 2"))
         ),
       ),
     );
