@@ -28,7 +28,9 @@ class _FirstAppState extends State<FirstApp> {
         body: Center(
           child: ElevatedButton(
             onPressed: () { 
-              Navigator.of(context).push(MaterialPageRoute(builder: (context)=> Screen2()));
+              Navigator.push(
+                context,
+                  MaterialPageRoute(builder: (context)=> const Screen2()));
             },
           child: Text("Ecran 2"))
         ),
