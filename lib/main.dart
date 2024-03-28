@@ -26,13 +26,17 @@ class _FirstAppState extends State<FirstApp> {
           title: Text("Screen1", style: TextStyle(color: Colors.white),),
         ),
         body: Center(
-          child: ElevatedButton(
-            onPressed: () { 
-              Navigator.push(
-                context,
-                  MaterialPageRoute(builder: (context)=> const Screen2()));
-            },
-          child: Text("Ecran 2"))
+          child: Builder(
+            builder: (context){
+              return ElevatedButton(
+                  onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context)=> const Screen2(name:"Ecran N° 2")));
+              }, child: Text("Ecran 2")) ;
+            }
+          )
+          ,
+
         ),
       ),
     );
